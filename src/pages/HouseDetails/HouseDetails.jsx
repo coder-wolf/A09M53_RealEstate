@@ -1,16 +1,14 @@
-import { BiArea, BiBed, BiCalendar, BiCheckCircle, BiSearch } from 'react-icons/bi';
-import { BsCheckCircle, BsHouse, BsQuestionCircle } from 'react-icons/bs';
+import { BiArea, BiBed, BiCalendar, BiSearch } from 'react-icons/bi';
+import { BsHouse } from 'react-icons/bs';
 import { CgHeart } from 'react-icons/cg';
 import { FaQuestionCircle, FaShare, FaShower } from 'react-icons/fa';
-import { FiCheckCircle } from 'react-icons/fi';
-import { GiShower } from 'react-icons/gi';
 import { HiCheckCircle } from 'react-icons/hi';
-import { MdBathroom, MdHomeRepairService, MdKeyboardArrowLeft, MdOutlineVideocam } from 'react-icons/md';
-import { PiShower } from 'react-icons/pi';
-import { useNavigate } from 'react-router-dom';
+import { MdHomeRepairService, MdKeyboardArrowLeft, MdOutlineVideocam } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const HouseDetails = ({ house }) => {
+const HouseDetails = () => {
     const navigate = useNavigate();
+    const { house } = useLocation().state;
     // const {
     //     id,
     //     estate_title,
@@ -21,7 +19,6 @@ const HouseDetails = ({ house }) => {
     //     bathrooms,
     //     area,
     //     location,
-
     // } = house;
 
     return (
@@ -38,7 +35,9 @@ const HouseDetails = ({ house }) => {
                 <span className='text-gray-400'>1234 Maple Street, Sunnyvale, CA</span>
                 <div className='flex flex-row gap-2'>
                     <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button>
-                    <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
+                    <button onClick={() => {
+
+                    }} className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
                     <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <BiSearch className='text-lg'></BiSearch> Browse nearby listings</button>
                 </div>
             </div>
@@ -157,6 +156,6 @@ const HouseDetails = ({ house }) => {
             </div>
         </div>
     );
-};
+}
 
 export default HouseDetails;

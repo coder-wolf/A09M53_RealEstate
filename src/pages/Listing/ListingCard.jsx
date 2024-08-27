@@ -24,7 +24,7 @@ const ListingCard = ({ house }) => {
         bathrooms,
         area,
         location,
-
+        buy_rent,
     } = house;
 
     useEffect(() => {
@@ -47,20 +47,43 @@ const ListingCard = ({ house }) => {
         setIsFav(!isFav);
     }
 
+    const placeholderImages = [
+        // "https://cdn.trustedhousesitters.com/static/images/listings/listing-placeholder-mobile.svg",
+        "https://calculatorexpress.com/API8/ryanamamoo/img.svg",
+        // "https://bearhomes.com/wp-content/uploads/2019/01/default-featured.png",
+    ]
+
+    const handleNavigate = () => {
+        // navigate('/componentB', { state: { id: 1, name: 'sabaoon' } });
+        navigate(`/details/${id}`, { state: house });
+    }
+
     return (
-        <div onClick={() => { navigate(`/details/${id}`) }} className='bg-white rounded-lg pb-5'>
-            <img
+        <div onClick={handleNavigate} className='bg-white rounded-lg pb-5'>
+            {/* <img
                 src={image_url}
                 alt=""
                 className='h-52 w-full rounded-t-lg'
+            /> */}
+            <img
+                className='h-52 w-full rounded-t-lg object-cover'
+                src={image_url}
+                onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
+                }}
             />
             <div className='p-5'>
                 <div className=''>
                     <div className='flex justify-between'>
                         <div>
                             <p>
-                                <span className='text-[#7065EF] font-semibold text-3xl'>$2,095</span>
-                                <span className='text-gray-400'>/month</span>
+                                <span className='text-[#7065EF] font-semibold text-3xl'>${price}</span>
+                                {
+                                    buy_rent == "Rent" ?
+                                        <span className='text-gray-400'>/month</span>
+                                        : <span></span>
+                                }
                             </p>
                             <p className='font-semibold text-3xl py-2'>{estate_title}</p>
                         </div>

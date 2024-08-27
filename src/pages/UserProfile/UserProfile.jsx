@@ -12,18 +12,13 @@ const UserProfile = () => {
     const lastNameInputRef = useRef(null);
     const emailInputRef = useRef(null);
     const phoneInputRef = useRef(null);
-    const countryInputRef = useRef(null);
-    const cityInputRef = useRef(null);
-    const postalCodeInputRef = useRef(null);
+    const photoURLRef = useRef(null);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [country, setCountry] = useState("");
-    const [city, setCity] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    // const taxInputRef = useRef(null);
+    const [photoURL, setPhotoURL] = useState("");
 
     const {
         user,
@@ -52,7 +47,8 @@ const UserProfile = () => {
             const fetchedPhone = user.phoneNumber;
             setPhone(fetchedPhone);
 
-            // const country = 
+            const fetchedPhotoURL = user.photoURL;
+            setPhotoURL(fetchedPhotoURL);
         }
     }, [favHouses, user]);
 
@@ -91,12 +87,9 @@ const UserProfile = () => {
                             </div> */}
                         </div>
                     </div>
-                    <div>
-                        {/* <EditButton></EditButton> */}
-                    </div>
                 </div>
                 <div className='grid lg:grid-cols-3 grid-cols-2'>
-                    <div className='rounded-xl p-6 mt-6 bg-white col-span-2'>
+                    <div className='rounded-xl p-6 mt-6 bg-white col-span-2 pb-8'>
                         <div className=''>
                             <div className='flex flex-row justify-between w-full pb-3'>
                                 <h2 className='text-3xl font-semibold pb-6'>Personal Information</h2>
@@ -112,148 +105,88 @@ const UserProfile = () => {
                                             setLastName(lastNameInputRef.current.value);
                                             setEmail(emailInputRef.current.value);
                                             setPhone(phoneInputRef.current.value);
-                                            setCountry(countryInputRef.current.value);
-                                            setCity(cityInputRef.current.value);
-                                            setPostalCode(postalCodeInputRef.current.value);
                                         }}>
                                             <SaveButton></SaveButton>
                                         </div>
                                         :
                                         <div onClick={() => {
                                             setEditMode(true)
-                                            // load all the existing data.
-                                            // 1. firstname
-                                            // 2. lastname
-                                            // 3. email
-                                            // 4. phone no.
-                                            // 5. country
-                                            // 6. city
-                                            // 7. postal code
-                                            // 8. tax id ❌
                                         }}>
                                             <EditButton></EditButton>
                                         </div>
                                 }
                             </div>
-                            <div className=''>
-                                <div className='grid grid-cols-2'>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>First Name</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={firstNameInputRef}
-                                                    defaultValue={firstName}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{firstName ? firstName : "Null"}</p>
-                                        }
-                                    </div>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>Last Name</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={lastNameInputRef}
-                                                    defaultValue={lastName}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{lastName ? lastName : "Null"}</p>
-                                        }
-                                    </div>
+                            <div className='grid grid-cols-2 gap-4 text-lg'>
+                                <div className='pb-4'>
+                                    <h2 className='text-xl font-semibold'>First Name</h2>
+                                    {
+                                        editMode ?
+                                            <input
+                                                ref={firstNameInputRef}
+                                                defaultValue={firstName}
+                                                type="text"
+                                                placeholder="Type here"
+                                                // className="input input-bordered input-sm border-none w-full max-w-xs" />
+                                                className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
+                                            :
+                                            <p className="pt-1">{firstName ? firstName : "Null"}</p>
+                                    }
                                 </div>
-                                <div className='grid grid-cols-2'>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>Email</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={emailInputRef}
-                                                    defaultValue={email}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{email ? email : "Null"}</p>
-                                        }
-                                    </div>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>Phone No.</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={phoneInputRef}
-                                                    defaultValue={phone}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{phone ? phone : "Null"}</p>
-                                        }
-
-                                    </div>
+                                <div className='pb-4'>
+                                    <h2 className='text-xl font-semibold'>Last Name</h2>
+                                    {
+                                        editMode ?
+                                            <input
+                                                ref={lastNameInputRef}
+                                                defaultValue={lastName}
+                                                type="text"
+                                                placeholder="Type here"
+                                                className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
+                                            :
+                                            <p className="pt-1">{lastName ? lastName : "Null"}</p>
+                                    }
                                 </div>
-                            </div>
-                            <h2 className='text-2xl font-semibold pb-6 pt-10'>Address</h2>
-                            <div className=''>
-                                <div className='grid grid-cols-2'>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>Country</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={countryInputRef}
-                                                    defaultValue={country}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{country ? country : "Null"}</p>
-                                        }
-                                    </div>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>City/State</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={cityInputRef}
-                                                    defaultValue={city}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{city ? city : "Null"}</p>
-                                        }
-                                    </div>
+                                <div className='pb-4'>
+                                    <h2 className='text-xl font-semibold'>Email</h2>
+                                    {
+                                        editMode ?
+                                            <input
+                                                ref={emailInputRef}
+                                                defaultValue={email}
+                                                type="text"
+                                                placeholder="Type here"
+                                                className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
+                                            :
+                                            <p className="pt-1">{email ? email : "Null"}</p>
+                                    }
                                 </div>
-                                <div className='grid grid-cols-2'>
-                                    <div className='pb-4'>
-                                        <h2 className='text-lg font-semibold'>Postal Code</h2>
-                                        {/* TODO: input field */}
-                                        {
-                                            editMode ?
-                                                <input
-                                                    ref={postalCodeInputRef}
-                                                    defaultValue={postalCode}
-                                                    type="text"
-                                                    placeholder="Type here"
-                                                    className="input input-bordered input-sm border-none w-full max-w-xs" />
-                                                :
-                                                <p className="pt-1">{postalCode ? postalCode : "Null"}</p>
-                                        }
-                                    </div>
-
-
+                                <div className='pb-4'>
+                                    <h2 className='text-xl font-semibold'>Phone No.</h2>
+                                    {
+                                        editMode ?
+                                            <input
+                                                ref={phoneInputRef}
+                                                defaultValue={phone}
+                                                type="text"
+                                                placeholder="Type here"
+                                                className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
+                                            :
+                                            <p className="pt-1">{phone ? phone : "Null"}</p>
+                                    }
+                                </div>
+                                <div className='pb-4 col-span-2'>
+                                    <h2 className='text-xl font-semibold'>Photo URL</h2>
+                                    {
+                                        editMode ?
+                                            <input
+                                                ref={photoURLRef}
+                                                defaultValue={photoURL}
+                                                type="text"
+                                                placeholder="Type here"
+                                                className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
+                                            :
+                                            <p className="pt-1">{photoURL ? photoURL.slice(0, 100) : "Null"}</p>
+                                    }
                                 </div>
                             </div>
 
@@ -266,7 +199,7 @@ const UserProfile = () => {
                                 favHouses.slice(0, 2).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)
                             }
                         </div>
-                        <div className='flex justify-end font-semibold mr-2'>
+                        <div className='flex justify-end font-semibold mr-2 mt-2'>
                             <Link to="/favourites">See more</Link>
                         </div>
                     </div>

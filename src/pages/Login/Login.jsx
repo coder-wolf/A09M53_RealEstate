@@ -3,6 +3,10 @@ import githubLogo from './../../assets/github.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
+
 
 const Login = () => {
     const location = useLocation();
@@ -26,10 +30,13 @@ const Login = () => {
         const password = form.get('password');
 
         signIn(email, password)
-            .then(result => {
-                navigate(location?.state ? location.state : '/');
+            .then(() => {
+                toast.success("Login successful!");
+                navigate((location?.state ? location.state : '/'));
+
             })
             .catch(error => {
+                toast.error("Login failed. Please try again.");
                 console.log(error);
             })
     }
@@ -57,11 +64,14 @@ const Login = () => {
     }
 
     return (
-        <div className='grid grid-cols-7 text-black'>
-            <div className='pl-32 pt-20 col-span-3 pr-16'>
+        <div className='grid lg:grid-cols-7 text-black'>
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
+            <div className='lg:pl-32 lg:pt-20 lg:pr-16 lg:col-span-3 p-10 md:px-32'>
                 <h2 className='text-4xl font-semibold'>Welcome back!</h2>
                 <p className='text-gray-500 mt-2 mb-3'>Let's find your next dream house!</p>
-                <div className='mt-5 mb-10'>
+                <div className='lg:mt-5 lg:mb-10'>
                     <form
                         onSubmit={handleSignIn}
                         action=""
@@ -106,11 +116,11 @@ const Login = () => {
                         Sign in with Github</button>
                 </div>
             </div>
-            <div className='col-span-3'>
+            <div className='lg:col-span-3 hidden justify-end lg:block'>
                 <img
                     src="https://static.vecteezy.com/system/resources/previews/032/469/692/non_2x/hand-drawn-real-estate-agent-character-in-flat-style-vector.jpg"
                     alt=""
-                    className='ml-32 pl-20 mt-40 object-cover'
+                    className='lg:ml-32 lg:pl-20 lg:mt-40 object-cover'
                 />
             </div>
         </div>

@@ -29,6 +29,13 @@ const AuthProvider = ({ children }) => {
         })
     }
 
+    const updatePhotoURL = (url) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, {
+            photoURL: url,
+        })
+    }
+
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
@@ -66,6 +73,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         updateName,
+        updatePhotoURL,
         signIn,
         signInWithGoogle,
         signInWithGithub,

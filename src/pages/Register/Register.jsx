@@ -3,6 +3,9 @@ import githubLogo from './../../assets/github.png';
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const location = useLocation();
@@ -13,6 +16,7 @@ const Register = () => {
         loading,
         createUser,
         updateName,
+        updatePhotoURL,
         signIn,
         signInWithGoogle,
         signInWithGithub,
@@ -25,20 +29,44 @@ const Register = () => {
 
         const name = form.get('name');
         const email = form.get('email');
+        const photo = form.get('photo');
         const password = form.get('password');
+
+        // password verification
+        if (password.length < 6) {
+            toast.error("Password can't be less than 6 charecters.");
+            return;
+        }
+
+        if (!/^(?=.*[a-z])(?=.*[A-Z]).+$/.test(password)) {
+            toast.error("Password must have at least one uppercase and one lowercase charecter.");
+            return;
+        }
 
         createUser(email, password)
             .then(result => {
                 console.log(result)
+                toast.success("Registration successful!");
                 updateName(name)
                     .then(result => {
                         console.log("Name Updated", result);
+                        // navigate("/");
                     })
                     .catch(error => {
                         console.log("Update Name Error: ", error)
+                        // navigate("/");
+                    });
+
+                updatePhotoURL(photo)
+                    .then(result => {
+                        console.log("Photo updated", result)
+                    })
+                    .catch(error => {
+                        console.log("Photo Update Error", error);
                     })
             })
             .catch(error => {
+                toast.error("Registration failed!");
                 console.log(error);
             })
     }
@@ -68,6 +96,9 @@ const Register = () => {
 
     return (
         <div className='grid grid-cols-7 text-black'>
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className='pl-32 pt-20 col-span-3 pr-16'>
                 <h2 className='text-4xl font-semibold'>Welcome!</h2>
                 <p className='text-gray-500 mt-2 mb-3'>Let's find your next dream house!</p>
@@ -81,13 +112,19 @@ const Register = () => {
                             <div className="label">
                                 <span className="label-text">Name</span>
                             </div>
-                            <input name='text' type="text" placeholder="Enter your name" className="input input-bordered w-full border-gray-400" />
+                            <input name='name' type="text" placeholder="Enter your name" className="input input-bordered w-full border-gray-400" />
                         </label>
                         <label className="form-control w-full mb-2">
                             <div className="label">
                                 <span className="label-text">Email <span className='text-red-500 text-lg'>*</span></span>
                             </div>
                             <input name='email' type="email" placeholder="Enter your email address" className="input input-bordered w-full border-gray-400" />
+                        </label>
+                        <label className="form-control w-full mb-2">
+                            <div className="label">
+                                <span className="label-text">Photo URL<span className='text-red-500 text-lg'>*</span></span>
+                            </div>
+                            <input name='photo' type="text" placeholder="Enter your profile photo URL" className="input input-bordered w-full border-gray-400" />
                         </label>
                         <label className="form-control w-full mb-2">
                             <div className="label">
@@ -127,6 +164,7 @@ const Register = () => {
                     className='ml-32 pl-20 mt-40 object-cover'
                 />
             </div>
+            <ToastContainer />
         </div>
     );
 };

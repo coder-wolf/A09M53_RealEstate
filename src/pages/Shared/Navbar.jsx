@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from './../../assets/logo.jpg';
 import { ApiContext } from '../../providers/ApiProvider';
@@ -8,6 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const {
         favIds,
+        updateFavHouses,
     } = useContext(ApiContext);
     const {
         user,
@@ -24,12 +25,16 @@ const Navbar = () => {
             })
     }
 
+    useEffect(() => {
+        if (favIds.length == 0) updateFavHouses();
+    }, [favIds])
+
     const navLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
-        {/* <li><NavLink to="/listing">See All</NavLink></li> */}
-        <li><NavLink to="/listing">Update Profile</NavLink></li>
-        <li><NavLink to="/listing">View Profile</NavLink></li>
+        <li><NavLink to="/listing">All Properties</NavLink></li>
         <li><NavLink to="/favourites">Favourites ({favIds.length})</NavLink></li>
+        <li><NavLink to="/profile">My Profile</NavLink></li>
+        {/* <li><NavLink to="/update_profile">Update Profile</NavLink></li> */}
     </>;
 
     return (
@@ -72,21 +77,22 @@ const Navbar = () => {
                         user ?
                             <div className='flex gap-3 items-center'>
                                 {/* <div className='font-semibold text-sm'>{user.displayName || user.email}</div> */}
-                                {
-                                    user.photoURL ?
-                                        <div className='avatar'>
-                                            <div className="w-10 rounded-full border-2">
-                                                <img src={user.photoURL} title={user.displayName ? user.displayName : user.email} />
+                                <Link to='/profile'>
+                                    {
+                                        user.photoURL ?
+                                            <div className='avatar'>
+                                                <div className="w-10 rounded-full border-2">
+                                                    <img src={user.photoURL} title={user.displayName ? user.displayName : user.email} />
+                                                </div>
                                             </div>
-                                        </div>
-                                        :
-                                        <div className="avatar placeholder">
-                                            <div className="bg-[#2B323C] text-neutral-content w-10 rounded-full">
-                                                <span className="text-xl text-[#A6ADBB]" title={user.displayName ? user.displayName : user.email}>{user.displayName ? user.displayName[0] : user.email[0].toUpperCase()}</span>
+                                            :
+                                            <div className="avatar placeholder">
+                                                <div className="bg-[#2B323C] text-neutral-content w-10 rounded-full">
+                                                    <span className="text-xl text-[#A6ADBB]" title={user.displayName ? user.displayName : user.email}>{user.displayName ? user.displayName[0] : user.email[0].toUpperCase()}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                }
-
+                                    }
+                                </Link>
                                 <button onClick={handleLogout} className='border rounded-lg px-4 py-2 bg-[#7065F0] text-white'>Log Out</button>
                             </div>
                             :

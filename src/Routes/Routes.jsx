@@ -8,11 +8,15 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import HouseDetails from "../pages/HouseDetails/HouseDetails";
 import Favourites from "../pages/Favourites/Favourites";
+import Error from "../pages/Error/Error";
+import UserProfile from "../pages/UserProfile/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: "/",
@@ -31,13 +35,18 @@ const router = createBrowserRouter([
                 element: <Listing></Listing>
             },
             {
+                path: "/favourites",
+                element: <Favourites></Favourites>
+            },
+            {
+                path: "/profile",
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
+            },
+            {
                 path: "/details/:id",
                 element: <HouseDetails></HouseDetails>
             },
-            {
-                path: "/favourites",
-                element: <Favourites></Favourites>
-            }
+
         ]
     },
 ]);

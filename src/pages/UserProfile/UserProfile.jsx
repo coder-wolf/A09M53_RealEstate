@@ -80,7 +80,7 @@ const UserProfile = () => {
                             <h2 className='text-4xl font-medium '>{user.displayName}</h2>
                             <p className='text-gray-600 pt-1'> <span className='text-black font-semibold'>Email: </span>{user.email ?? user.reloadUserInfo.providerUserInfo[0].email}</p>
                             <p className='text-gray-600 pt-1'> <span className='text-black font-semibold'>Location: </span>Dhaka, Bangladesh</p>
-                            <div className='flex gap-2 pt-1 items-center'>
+                            {/* <div className='flex gap-2 pt-1 items-center'>
                                 <span className='text-black font-semibold'>Looking For: </span>
                                 <div className='flex gap-2'>
                                     <div className="badge">House</div>
@@ -88,7 +88,7 @@ const UserProfile = () => {
                                     <div className="badge ">Suberban Area</div>
                                     <div className="badge ">$3000-$4000</div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div>
@@ -261,9 +261,11 @@ const UserProfile = () => {
                     </div>
                     <div className='lg:pl-6 pt-6 col-span-2 lg:col-span-1'>
                         <h2 className='text-3xl font-semibold mb-3'>Favourites ({favIds.length})</h2>
-                        {
-                            favHouses.slice(0, 2).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)
-                        }
+                        <div className='grid gap-4'>
+                            {
+                                favHouses.slice(0, 2).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)
+                            }
+                        </div>
                         <div className='flex justify-end font-semibold mr-2'>
                             <Link to="/favourites">See more</Link>
                         </div>

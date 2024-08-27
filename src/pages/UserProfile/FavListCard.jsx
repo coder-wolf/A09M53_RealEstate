@@ -24,7 +24,7 @@ const FavListCard = ({ house }) => {
     ]
 
     return (
-        <div className='flex flex-col mb-4 p-3 border rounded-2xl shadow-xs bg-[#F9F9F9]'>
+        <div className='flex flex-col  p-3 border rounded-2xl shadow-xs bg-[#F9F9F9]'>
             <div className='flex flex-row gap-4 '>
                 <div className="avatar">
                     <div className="w-24 h-24 rounded-xl">

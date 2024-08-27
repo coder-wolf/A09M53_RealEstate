@@ -1,20 +1,39 @@
-import { BiRightArrow } from 'react-icons/bi';
-import Banner from './Banner';
+import Banner from '../Banner/Banner';
 import { IoIosArrowForward } from 'react-icons/io';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsPlayBtn } from 'react-icons/bs';
+import { ApiContext } from '../../providers/ApiProvider';
+import FavListCard from '../UserProfile/FavListCard';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const [selectedTab, setSelectedTab] = useState(0);
+    const {
+        housesData,
+        updateHousesData,
+        favHouses,
+        favIds,
+        updateFavHouses,
+    } = useContext(ApiContext);
 
     const handleChangeTab = tab => {
         setSelectedTab(tab);
     }
 
+    // useEffect(() => {
+    //     updateHousesData()
+    // }, [housesData]);
+
     return (
         <div>
+            <Helmet>
+                <title>Estatery Home</title>
+            </Helmet>
             <Banner></Banner>
-            <div className='grid grid-cols-2 gap-10 px-32 py-32 pt-20'>
+            <div className='grid grid-cols-2 gap-10 px-32 pt-20 pb-5'>
                 <div className='relative'>
                     <img
                         className='aspect-[1] object-cover '
@@ -38,12 +57,36 @@ const Home = () => {
                     </div>
                     <h2 className="text-3xl font-semibold pt-10">We make it easy for tenants and landlords</h2>
                     <p className='text-gray-500 py-6'>Whether it's selling your current home, getting financing, or buying a new home, we make it easy and efficient. The best part? You'll save a bunch of money and time with our services.</p>
-                    <button className='bg-[#7065F0] text-white font-medium px-6 py-2 rounded-lg flex gap-2 items-center'>
-                        <span>See more</span>
+                    <button
+                        onClick={() => { navigate('/listing') }}
+                        className='bg-[#7065F0] text-white font-medium px-6 py-2 rounded-lg flex gap-2 items-center'>
+                        <span>Browse now</span>
                         <IoIosArrowForward></IoIosArrowForward>
                     </button>
                 </div>
+            </div>
+            <div className='px-32 mb-20'>
+                <div>
+                    <h2 className="text-3xl font-semibold pt-10 pb-8">Properties for rent</h2>
+                    <div className='grid grid-cols-3 grid-rows-2 gap-8'>
+                        {
+                            housesData
+                                .filter(house => house.buy_rent == "Rent")
+                                .slice(0, 6).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)
+                        }
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-3xl font-semibold pt-10 pb-8">Properties for sell</h2>
+                    <div className='grid grid-cols-3 grid-rows-2 gap-8'>
+                        {
 
+                            housesData
+                                .filter(house => house.buy_rent == "Buy")
+                                .slice(0, 6).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)
+                        }
+                    </div>
+                </div>
             </div>
         </div >
     );

@@ -103,8 +103,8 @@ const Listing = () => {
                 <title>Property Listing</title>
             </Helmet>
             <div className=''>
-                <h2 className="text-3xl font-semibold pt-10">Search properties to rent</h2>
-                <div className='border w1/2 bg-white rounded-lg my-6 p-6 flex gap-5 pr-12'>
+                <h2 className="text-3xl font-semibold pt-10 mb-6">Search properties to rent</h2>
+                <div className='border w1/2 bg-white rounded-lg mb-6 p-6 lg:flex hidden gap-5 pr-12'>
                     <div className='w-20'>
                         <p className='text-gray-400 font-semibold '>Location</p>
                         <p className='font-semibold'>New York</p>

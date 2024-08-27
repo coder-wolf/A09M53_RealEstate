@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className=''>
-            <footer className="footer px-36 py-16 bg-[#F7F7FC] text-base-content p-10">
+            <footer className="footer lg:px-36 md:px-16 px-8 py-16 bg-[#F7F7FC] text-base-content p-10 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Property Listing</a>
@@ -26,7 +26,7 @@ const Footer = () => {
                 </nav>
                 <form onSubmit={() => {
 
-                }} className='ml-auto'>
+                }} className='ml-auto lg:col-span-2'>
                     <h6 className="footer-title">Newsletter</h6>
                     <fieldset className="form-control w-80">
                         <label className="label">

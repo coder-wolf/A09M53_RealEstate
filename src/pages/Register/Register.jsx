@@ -50,11 +50,9 @@ const Register = () => {
                 updateName(name)
                     .then(result => {
                         console.log("Name Updated", result);
-                        // navigate("/");
                     })
                     .catch(error => {
                         console.log("Update Name Error: ", error)
-                        // navigate("/");
                     });
 
                 updatePhotoURL(photo)
@@ -64,6 +62,7 @@ const Register = () => {
                     .catch(error => {
                         console.log("Photo Update Error", error);
                     })
+                navigate("/");
             })
             .catch(error => {
                 toast.error("Registration failed!");

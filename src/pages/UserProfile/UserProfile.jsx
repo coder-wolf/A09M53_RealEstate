@@ -57,7 +57,7 @@ const UserProfile = () => {
     }, [favHouses, user]);
 
     return (
-        <div className='px-32 py-20 pt-10 bg-[#F1F1F8]'>
+        <div className='lg:px-32 md:px-16 px-8 py-20 pt-10 bg-[#F1F1F8]'>
             <Helmet>
                 <title>My Profile</title>
             </Helmet>
@@ -95,7 +95,7 @@ const UserProfile = () => {
                         {/* <EditButton></EditButton> */}
                     </div>
                 </div>
-                <div className='grid grid-cols-3'>
+                <div className='grid lg:grid-cols-3 grid-cols-2'>
                     <div className='rounded-xl p-6 mt-6 bg-white col-span-2'>
                         <div className=''>
                             <div className='flex flex-row justify-between w-full pb-3'>
@@ -259,7 +259,7 @@ const UserProfile = () => {
 
                         </div>
                     </div>
-                    <div className='pl-6 pt-6'>
+                    <div className='lg:pl-6 pt-6 col-span-2 lg:col-span-1'>
                         <h2 className='text-3xl font-semibold mb-3'>Favourites ({favIds.length})</h2>
                         {
                             favHouses.slice(0, 2).map((house, index) => <FavListCard key={index} house={house}></FavListCard>)

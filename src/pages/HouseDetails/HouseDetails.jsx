@@ -36,8 +36,8 @@ const HouseDetails = () => {
                         <h2 className='font-semibold text-3xl'>St. Cristal</h2>
                         <span className='text-gray-400'>1234 Maple Street, Sunnyvale, CA</span>
                     </div>
-                    <div className='flex flex-row gap-2'>
-                        <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button>
+                    <div className='flex flex-row gap-2 '>
+                        {/* <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button> */}
                         <button onClick={() => {
 
                         }} className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
@@ -110,7 +110,7 @@ const HouseDetails = () => {
                         Minimum one year lease.</p>
                     <div className='bg-[#F7F7FC] gap-5 w-full border rounded-lg mt-10 p-5 pt-6 flex flex-col justify-between'>
                         <p className='text-gray-400 font-medium'>Listed by property owner</p>
-                        <div className='flex justify-between items-center'>
+                        <div className='md:flex grid gap-4 justify-between items-center'>
                             <div className='flex gap-2'>
                                 <div className="avatar">
                                     <div className="w-12 rounded-full">
@@ -122,7 +122,7 @@ const HouseDetails = () => {
                                     <p className='text-gray-500'>Rich Capital Properties LLC</p>
                                 </div>
                             </div>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-2 md:flex-col lg:flex-row'>
                                 <button className='bg-[#E8E6F9] text-[#7065F0] font-semibold px-6 py-3 rounded-lg'>Ask a question</button>
                                 <button className='bg-[#E8E6F9] text-[#7065F0] font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2'>
                                     <FaQuestionCircle></FaQuestionCircle>
@@ -132,30 +132,34 @@ const HouseDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border rounded-lg p-4'>
-                    <p className='mb-2 text-gray-400'>Rent price</p>
-                    <p>
-                        <span className='text-[#7065EF] font-semibold text-3xl'>$2,095</span>
-                        <span className='text-gray-400'>/month</span>
-                    </p>
-                    <button className='w-full bg-[#7065EF] py-[10px] text-white rounded-lg flex flex-row items-center justify-center gap-1 mt-6 mb-4'>
-                        <BiArea></BiArea>
-                        <span>Apply now</span>
-                    </button>
-                    <hr />
-                    <p className="font-semibold my-5 ml-1">Request a home tour</p>
-                    <div className='flex flex-row gap-3 text-gray-500 mb-2'>
-                        <button className='border py-2 justify-center rounded-md w-full flex flex-row gap-1 items-center'><BsHouse className='text-lg'></BsHouse> In person</button>
-                        <button className='border py-2 justify-center rounded-md w-full flex flex-row gap-1 items-center'><MdOutlineVideocam className='text-xl'></MdOutlineVideocam> Virtual</button>
+                <div className='border rounded-lg p-4 col-span-2 md:col-span-1'>
+                    <div>
+                        <p className='mb-2 text-gray-400'>Rent price</p>
+                        <p>
+                            <span className='text-[#7065EF] font-semibold text-3xl'>$2,095</span>
+                            <span className='text-gray-400'>/month</span>
+                        </p>
+                        <button className='w-full bg-[#7065EF] py-[10px] text-white rounded-lg flex flex-row items-center justify-center gap-1 mt-6 mb-4'>
+                            <BiArea></BiArea>
+                            <span>Apply now</span>
+                        </button>
+                        <hr />
                     </div>
-                    <button className='border py-2 justify-between rounded-md w-full flex flex-row gap-1 text-gray-500 items-center mt-3 px-3'>
-                        <span className='flex flex-row gap-1 justify-center items-center'>
-                            <BiCalendar></BiCalendar>
-                            <span>Select tour date</span>
-                        </span>
-                    </button>
-                    <button className='bg-[#100A55] w-full py-[10px] mt-4 rounded-md text-white flex flex-row gap-1 items-center justify-center'><BiArea></BiArea> Request a tour</button>
-                    <p className='text-sm text-gray-400 mt-4 ml-1'>It's free with no obligation - cancel anytime.</p>
+                    <div>
+                        <p className="font-semibold my-5 ml-1">Request a home tour</p>
+                        <div className='flex flex-row gap-3 text-gray-500 mb-2 md:flex-col lg:flex-row'>
+                            <button className='border py-2 justify-center rounded-md w-full flex flex-row gap-1 items-center'><BsHouse className='text-lg'></BsHouse> In person</button>
+                            <button className='border py-2 justify-center rounded-md w-full flex flex-row gap-1 items-center'><MdOutlineVideocam className='text-xl'></MdOutlineVideocam> Virtual</button>
+                        </div>
+                        <button className='border py-2 justify-between rounded-md w-full flex flex-row gap-1 text-gray-500 items-center mt-3 px-3'>
+                            <span className='flex flex-row gap-1 justify-center items-center'>
+                                <BiCalendar></BiCalendar>
+                                <span>Select tour date</span>
+                            </span>
+                        </button>
+                        <button className='bg-[#100A55] w-full py-[10px] mt-4 rounded-md text-white flex flex-row gap-1 items-center justify-center'><BiArea></BiArea> Request a tour</button>
+                        <p className='text-sm text-gray-400 mt-4 ml-1'>It's free with no obligation - cancel anytime.</p>
+                    </div>
                 </div>
             </div>
         </div>

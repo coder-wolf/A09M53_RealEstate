@@ -48,8 +48,8 @@ const ListingCard = ({ house }) => {
     }
 
     const placeholderImages = [
-        // "https://cdn.trustedhousesitters.com/static/images/listings/listing-placeholder-mobile.svg",
         "https://calculatorexpress.com/API8/ryanamamoo/img.svg",
+        // "https://cdn.trustedhousesitters.com/static/images/listings/listing-placeholder-mobile.svg",
         // "https://bearhomes.com/wp-content/uploads/2019/01/default-featured.png",
     ]
 

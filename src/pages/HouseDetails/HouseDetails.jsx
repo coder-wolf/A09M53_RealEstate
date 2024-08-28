@@ -35,7 +35,7 @@ const HouseDetails = () => {
             </button>
             <div>
                 <div className='flex lg:flex-row flex-col gap-2 lg:justify-between lg:items-end'>
-                    <div className='flex lg:flex-col lg:gap-1 gap-3 items-end md:items-start'>
+                    <div className='flex flex-col lg:gap-1 gap-1 items-start md:items-start'>
                         <h2 className='font-semibold text-3xl'>{estate_title}</h2>
                         <span className='text-gray-400'>{location}</span>
                     </div>
@@ -58,17 +58,17 @@ const HouseDetails = () => {
                 <img
                     src={image_url}
                     alt=""
-                    className='col-span-2 row-span-2 rounded-lg w-full object-cover aspect-[3/2.1]'
+                    className='md:col-span-2 col-span-3 row-span-2 rounded-lg w-full object-cover md:aspect-[3/2.1] aspect-[3/2.3]'
                 />
                 <img
                     src="https://cdn.houseplansservices.com/content/h0rig2dbr8vsg0fcgqco7acmul/w991x660.jpg?v=9"
                     alt=""
-                    className='col-span-1 row-span-1 rounded-lg h-full'
+                    className='col-span-1 row-span-1 rounded-lg h-full md:block hidden'
                 />
                 <img
                     src="https://cdn.houseplansservices.com/content/h0rig2dbr8vsg0fcgqco7acmul/w991x660.jpg?v=9"
                     alt=""
-                    className='col-span-1 row-span-1 rounded-lg h-full'
+                    className='col-span-1 row-span-1 rounded-lg h-full md:block hidden'
                 />
             </div>
             <div className='grid md:grid-cols-3  gap-4'>

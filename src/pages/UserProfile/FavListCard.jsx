@@ -3,10 +3,12 @@ import EditButton from '../Shared/EditButton';
 import CommonButton from '../Shared/CommonButton';
 import { GiBed } from 'react-icons/gi';
 import { BiArea, BiShower } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const FavListCard = ({ house }) => {
-    // console.log(house)
+    const navigate = useNavigate();
     const {
+        id,
         image_url,
         estate_title,
         price,
@@ -18,13 +20,19 @@ const FavListCard = ({ house }) => {
     } = house;
 
     const placeholderImages = [
-        // "https://cdn.trustedhousesitters.com/static/images/listings/listing-placeholder-mobile.svg",
         "https://calculatorexpress.com/API8/ryanamamoo/img.svg",
+        // "https://cdn.trustedhousesitters.com/static/images/listings/listing-placeholder-mobile.svg",
         // "https://bearhomes.com/wp-content/uploads/2019/01/default-featured.png",
     ]
 
+    const handleNavigate = () => {
+        // navigate('/componentB', { state: { id: 1, name: 'sabaoon' } });
+        navigate(`/details/${id}`, { state: house });
+    }
+
     return (
-        <div className='flex flex-col mb-4 p-3 border rounded-2xl shadow-xs bg-[#F9F9F9]'>
+        <div
+            className='flex flex-col mb-4 p-3 border rounded-2xl shadow-xs bg-[#F9F9F9]'>
             <div className='flex flex-row gap-4 '>
                 <div className="avatar">
                     <div className="w-24 h-24 rounded-xl">
@@ -65,7 +73,9 @@ const FavListCard = ({ house }) => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-between items-center'>
+            <div
+                onClick={handleNavigate}
+                className='flex justify-between items-center'>
                 <p className='text-gray-400 '>{location}</p>
                 <CommonButton>Details</CommonButton>
             </div>

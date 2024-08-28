@@ -202,7 +202,7 @@ const UserProfile = () => {
                                                 placeholder="Type here"
                                                 className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
                                             :
-                                            <p className="pt-1">{photoURL ? photoURL.slice(0, 100) + (photoURL.length > 100 ? "..." : "") : "Null"}</p>
+                                            <p className="pt-1 text-wrap">{photoURL ? photoURL.slice(0, 100) + (photoURL.length > 100 ? "..." : "") : "Null"}</p>
                                     }
                                 </div>
                             </div>

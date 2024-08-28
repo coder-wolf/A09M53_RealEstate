@@ -6,7 +6,8 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
-    updateProfile
+    updateProfile,
+    updateEmail,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
@@ -17,19 +18,38 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const googleAuthProvider = new GoogleAuthProvider();
+    const githubAuthProvider = new GithubAuthProvider();
+
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const updateName = (fullName) => {
+    const updateUserName = (fullName) => {
         setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: fullName,
         })
     }
 
-    const updatePhotoURL = (url) => {
+    const updateUserPhone = (phone) => {
+        setLoading(true);
+        return updateProfile(auth.currentUser, {
+            phoneNumber: phone,
+        })
+    }
+
+    const updateUserEmail = (email) => {
+        setLoading(true);
+        // return updateProfile(auth.currentUser, {
+        //     email: email,
+        // })
+
+        return updateEmail(user, email);
+    }
+
+    const updateUserPhotoURL = (url) => {
         setLoading(true);
         return updateProfile(auth.currentUser, {
             photoURL: url,
@@ -43,13 +63,11 @@ const AuthProvider = ({ children }) => {
 
     const signInWithGoogle = () => {
         setLoading(true);
-        const googleAuthProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleAuthProvider);
     }
 
     const signInWithGithub = () => {
         setLoading(true);
-        const githubAuthProvider = new GithubAuthProvider();
         return signInWithPopup(auth, githubAuthProvider);
     }
 
@@ -72,8 +90,10 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
-        updateName,
-        updatePhotoURL,
+        updateUserName,
+        updateUserEmail,
+        updateUserPhone,
+        updateUserPhotoURL,
         signIn,
         signInWithGoogle,
         signInWithGithub,

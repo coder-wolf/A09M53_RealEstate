@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../providers/AuthProvider';
-import FavListCard from './FavListCard';
+import { ApiContext } from '../../providers/ApiProvider';
 import { Link } from 'react-router-dom';
 import EditButton from '../Shared/EditButton';
-import { ApiContext } from '../../providers/ApiProvider';
-import { Helmet } from 'react-helmet-async';
 import SaveButton from '../Shared/SaveButton';
+import FavListCard from './FavListCard';
 
 const UserProfile = () => {
     const firstNameInputRef = useRef(null);
@@ -22,8 +22,11 @@ const UserProfile = () => {
 
     const {
         user,
+        updateUserName,
+        updateUserEmail,
+        updateUserPhone,
+        updateUserPhotoURL,
     } = useContext(AuthContext);
-    console.log(user);
 
     const [editMode, setEditMode] = useState(false);
 
@@ -51,6 +54,25 @@ const UserProfile = () => {
             setPhotoURL(fetchedPhotoURL);
         }
     }, [favHouses, user]);
+
+    const refresh = () => window.location.reload(true)
+
+    const handleSaveProfile = () => {
+        const inputFullName = firstNameInputRef.current.value + " " + lastNameInputRef.current.value;
+        updateUserName(inputFullName).then(() => { refresh(); });
+        updateUserEmail(emailInputRef.current.value).then(() => { });
+        updateUserPhone(phoneInputRef.current.value).then(() => { });
+        updateUserPhotoURL(photoURLRef.current.value).then(() => { refresh(); });
+
+        setFirstName(firstNameInputRef.current.value);
+        setLastName(lastNameInputRef.current.value);
+        setEmail(emailInputRef.current.value);
+        setPhone(phoneInputRef.current.value);
+        setPhotoURL(photoURLRef.current.value);
+
+        setEditMode(false);
+    }
+
 
     return (
         <div className='lg:px-32 md:px-16 px-8 py-20 pt-10 bg-[#F1F1F8]'>
@@ -99,12 +121,7 @@ const UserProfile = () => {
                                 {
                                     editMode ?
                                         <div onClick={() => {
-                                            setEditMode(false);
-
-                                            setFirstName(firstNameInputRef.current.value);
-                                            setLastName(lastNameInputRef.current.value);
-                                            setEmail(emailInputRef.current.value);
-                                            setPhone(phoneInputRef.current.value);
+                                            handleSaveProfile();
                                         }}>
                                             <SaveButton></SaveButton>
                                         </div>
@@ -185,7 +202,7 @@ const UserProfile = () => {
                                                 placeholder="Type here"
                                                 className="input input-bordered input-sm w-full h-10 text-lg mt-2 shadow-lg border" />
                                             :
-                                            <p className="pt-1">{photoURL ? photoURL.slice(0, 100) : "Null"}</p>
+                                            <p className="pt-1">{photoURL ? photoURL.slice(0, 100) + (photoURL.length > 100 ? "..." : "") : "Null"}</p>
                                     }
                                 </div>
                             </div>

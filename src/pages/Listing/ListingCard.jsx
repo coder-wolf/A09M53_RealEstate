@@ -29,8 +29,6 @@ const ListingCard = ({ house }) => {
 
     useEffect(() => {
         if (favIds.length == 0) updateFavHouses();
-        // console.log("ID = ", id);
-        // console.log("Fav id [0] = ", favIds)
         if (favIds.includes((id))) {
             console.log("Fav = ", id);
             setIsFav(true);
@@ -54,17 +52,11 @@ const ListingCard = ({ house }) => {
     ]
 
     const handleNavigate = () => {
-        // navigate('/componentB', { state: { id: 1, name: 'sabaoon' } });
         navigate(`/details/${id}`, { state: house });
     }
 
     return (
         <div onClick={handleNavigate} className='bg-white rounded-lg pb-5'>
-            {/* <img
-                src={image_url}
-                alt=""
-                className='h-52 w-full rounded-t-lg'
-            /> */}
             <img
                 className='h-52 w-full rounded-t-lg object-cover'
                 src={image_url}

@@ -1,10 +1,13 @@
-import { BiArea, BiBed, BiCalendar, BiSearch } from 'react-icons/bi';
-import { BsHouse } from 'react-icons/bs';
+import { useContext, useEffect, useState } from 'react';
+import { BiArea, BiBed, BiCalendar, BiHeart, BiSearch } from 'react-icons/bi';
+import { BsHeart, BsHeartFill, BsHouse } from 'react-icons/bs';
 import { CgHeart } from 'react-icons/cg';
 import { FaQuestionCircle, FaShare, FaShower } from 'react-icons/fa';
 import { HiCheckCircle } from 'react-icons/hi';
 import { MdHomeRepairService, MdKeyboardArrowLeft, MdOutlineVideocam } from 'react-icons/md';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toggleFavourite } from '../../utils/offlinestorage';
+import { ApiContext } from '../../providers/ApiProvider';
 
 const HouseDetails = () => {
     const navigate = useNavigate();
@@ -14,7 +17,6 @@ const HouseDetails = () => {
         estate_title,
         image_url,
         price,
-        status,
         buy_rent,
         bedrooms,
         bathrooms,
@@ -23,6 +25,27 @@ const HouseDetails = () => {
         location,
         description,
     } = house;
+
+    const [isFav, setIsFav] = useState(false);
+
+    const {
+        favIds,
+        updateFavHouses,
+    } = useContext(ApiContext);
+
+    const handleToggleFavourite = e => {
+        // e.stopPropagation();
+        toggleFavourite(id);
+        updateFavHouses();
+        setIsFav(!isFav);
+    }
+
+    useEffect(() => {
+        if (favIds.includes((id))) {
+            console.log("Fav = ", id);
+            setIsFav(true);
+        }
+    }, []);
 
     return (
         <div className='lg:px-32 md:px-16 px-8 border-t mt-1 pt-8 mb-20'>
@@ -42,10 +65,16 @@ const HouseDetails = () => {
                     <div className='flex flex-row gap-2 '>
                         {/* <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button> */}
                         <button
-                            onClick={() => {
-
-                            }}
-                            className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
+                            onClick={handleToggleFavourite}
+                            className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]">
+                            {/* <CgHeart className='text-lg'></CgHeart> */}
+                            {
+                                isFav
+                                    ? <BsHeartFill></BsHeartFill>
+                                    : <BsHeart></BsHeart>
+                            }
+                            <span>Favourite</span>
+                        </button>
                         <button
                             onClick={() => {
                                 navigate("/listing");

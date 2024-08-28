@@ -9,7 +9,7 @@ Few notable features:
 - Filter items in various constraints
 - Profile save & edit.
 
-notable npm packages used for the project:
+Notable npm packages used for the project:
 
 - [Swiper Slider](https://swiperjs.com/): For homepage card style component.
 - [React Tostify](https://www.npmjs.com/package/react-toastify): For toast.

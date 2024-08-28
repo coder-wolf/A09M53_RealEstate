@@ -22,7 +22,7 @@ const HouseDetails = () => {
     // } = house;
 
     return (
-        <div className='px-32 border-t mt-1 pt-8 mb-20'>
+        <div className='lg:px-32 md:px-16 px-8 border-t mt-1 pt-8 mb-20'>
             <button
                 onClick={() => { navigate('/listing'); }}
                 className='flex gap-1 text-[#7065F0] items-center pb-3'
@@ -30,15 +30,19 @@ const HouseDetails = () => {
                 <MdKeyboardArrowLeft className='text-2xl'></MdKeyboardArrowLeft>
                 <span className='font-semibold '>Back to listing</span>
             </button>
-            <h2 className='font-semibold text-3xl'>St. Cristal</h2>
-            <div className='flex flex-row justify-between items-center'>
-                <span className='text-gray-400'>1234 Maple Street, Sunnyvale, CA</span>
-                <div className='flex flex-row gap-2'>
-                    <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button>
-                    <button onClick={() => {
+            <div>
+                <div className='flex lg:flex-row flex-col gap-2 lg:justify-between lg:items-end'>
+                    <div className='flex lg:flex-col lg:gap-1 gap-3 items-end md:items-start'>
+                        <h2 className='font-semibold text-3xl'>St. Cristal</h2>
+                        <span className='text-gray-400'>1234 Maple Street, Sunnyvale, CA</span>
+                    </div>
+                    <div className='flex flex-row gap-2'>
+                        <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <FaShare className='text-lg'></FaShare> Share</button>
+                        <button onClick={() => {
 
-                    }} className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
-                    <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <BiSearch className='text-lg'></BiSearch> Browse nearby listings</button>
+                        }} className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <CgHeart className='text-lg'></CgHeart> Favorite</button>
+                        <button className="btn border-[#7065F050] text-[#7065F0] bg-[#F7F7FC]"> <BiSearch className='text-lg'></BiSearch> Browse nearby listings</button>
+                    </div>
                 </div>
             </div>
             <div className='grid grid-cols-3 grid-rows-2 gap-4 mt-8 mb-4'>
@@ -58,38 +62,38 @@ const HouseDetails = () => {
                     className='col-span-1 row-span-1 rounded-lg h-full'
                 />
             </div>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid md:grid-cols-3  gap-4'>
                 <div className='col-span-2'>
-                    <div className='w-full h-28 border rounded-lg items-center justify-between px-6 flex flex-row pr-16'>
-                        <div className='my-auto h-28 flex flex-col justify-center gap-1'>
+                    <div className='w-full lg:h-28 border rounded-lg items-center justify-between px-6 lg:flex lg:flex-row grid md:grid-cols-3 grid-cols-2 pr-16 gap-4 py-5'>
+                        <div className='my-auto lg:h-28 flex flex-col justify-center gap-1'>
                             <span className='text-gray-500 font-semibold'>Bedrooms</span>
                             <div className='flex text-gray-500 items-center gap-1'>
                                 <BiBed></BiBed>
                                 <span className='font-semibold text-black'>4</span>
                             </div>
                         </div>
-                        <div className='my-auto h-28 flex flex-col justify-center gap-1'>
+                        <div className='my-auto lg:h-28 flex flex-col justify-center gap-1'>
                             <span className='text-gray-500 font-semibold'>Bathrooms</span>
                             <div className='flex text-gray-500 items-center gap-1'>
                                 <FaShower></FaShower>
                                 <span className='font-semibold text-black'>2</span>
                             </div>
                         </div>
-                        <div className='my-auto h-28 flex flex-col justify-center gap-1'>
+                        <div className='my-auto lg:h-28 flex flex-col justify-center gap-1'>
                             <span className='text-gray-500 font-semibold'>Square Area</span>
                             <div className='flex text-gray-500 items-center gap-1'>
                                 <BiArea></BiArea>
                                 <span className='font-semibold text-black'>6<small>x</small>4 m<sup>2</sup></span>
                             </div>
                         </div>
-                        <div className='my-auto h-28 flex flex-col justify-center gap-1'>
+                        <div className='my-auto lg:h-28 flex flex-col justify-center gap-1'>
                             <span className='text-gray-500 font-semibold'>Repair Quality</span>
                             <div className='flex text-gray-500 items-center gap-1'>
                                 <MdHomeRepairService></MdHomeRepairService>
                                 <span className='font-semibold text-black'>Modern Loft</span>
                             </div>
                         </div>
-                        <div className='my-auto h-28 flex flex-col justify-center gap-1'>
+                        <div className='my-auto lg:h-28 flex flex-col justify-center gap-1'>
                             <span className='text-gray-500 font-semibold'>Status</span>
                             <div className='flex text-gray-500 items-center gap-1'>
                                 <HiCheckCircle></HiCheckCircle>

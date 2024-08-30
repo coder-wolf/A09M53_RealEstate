@@ -98,7 +98,7 @@ const Register = () => {
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            <div className='lg:pl-32 lg:pt-20 lg:col-span-3 lg:pr-16 p-10'>
+            <div className='lg:pl-32 lg:pt-20 lg:col-span-3 lg:pr-16 p-10 md:px-32'>
                 <h2 className='text-4xl font-semibold'>Welcome!</h2>
                 <p className='text-gray-500 mt-2 mb-3'>Let's find your next dream house!</p>
                 <div className='mt-5 mb-10'>

@@ -94,11 +94,11 @@ const Register = () => {
     }
 
     return (
-        <div className='grid grid-cols-7 text-black'>
+        <div className='grid lg:grid-cols-7 text-black'>
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            <div className='pl-32 pt-20 col-span-3 pr-16'>
+            <div className='lg:pl-32 lg:pt-20 lg:col-span-3 lg:pr-16 p-10'>
                 <h2 className='text-4xl font-semibold'>Welcome!</h2>
                 <p className='text-gray-500 mt-2 mb-3'>Let's find your next dream house!</p>
                 <div className='mt-5 mb-10'>
@@ -156,7 +156,7 @@ const Register = () => {
                         Sign up with Github</button>
                 </div>
             </div>
-            <div className='col-span-3'>
+            <div className='col-span-3 hidden lg:block'>
                 <img
                     src="https://static.vecteezy.com/system/resources/previews/032/469/692/non_2x/hand-drawn-real-estate-agent-character-in-flat-style-vector.jpg"
                     alt=""
